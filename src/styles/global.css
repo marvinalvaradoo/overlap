@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+@import "tailwindcss";
+
+/* ─── Brand tokens ─────────────────────────────────────────── */
+:root {
+  --black:   #0A0A0A;
+  --white:   #FFFFFF;
+  --yellow:  #F5C800;
+  --gray1:   #111111;
+  --gray2:   #1A1A1A;
+  --font-display: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+/* ─── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--black);
+  font-size: 17px;          /* base bump — everything scales from here */
+}
+
+@media (max-width: 640px) {
+  html { font-size: 18px; }
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom cursor — disabled */
+#cursor, #cursor-ring { display: none; }
+
+/* ─── Noise texture ────────────────────────────────────────── */
+.noise-bg {
+  position: relative;
+}
+.noise-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  pointer-events: none;
+  z-index: 1;
+}
+.noise-bg > * { position: relative; z-index: 2; }
+
+/* ─── Scroll reveal ────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .75s ease, transform .75s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Typography helpers ───────────────────────────────────── */
+.display {
+  font-family: var(--font-display);
+  letter-spacing: .02em;
+  line-height: .95;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+/* ─── Buttons ──────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  transform: scale(1.025);
+  box-shadow: 0 0 28px rgba(245,200,0,.4);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s ease, color .2s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+/* ─── Section spacing ──────────────────────────────────────── */
+.section-pad {
+  padding: 5rem 1.25rem;
+}
+@media (min-width: 768px)  { .section-pad { padding: 9rem 3rem; } }
+@media (min-width: 1280px) { .section-pad { padding: 11rem 6rem; } }
+
+/* ─── Form elements ────────────────────────────────────────── */
+.form-label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: .55rem;
+}
+.form-field {
+  width: 100%;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff;
+  padding: .95rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  border-radius: 0;
+  outline: none;
+  transition: border-color .2s ease, background .2s ease;
+}
+.form-field::placeholder { color: rgba(255,255,255,.22); }
+.form-field:focus {
+  border-color: var(--yellow);
+  background: rgba(255,255,255,.06);
+}
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23F5C800' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+}
+.form-select option { background: #0A0A0A; color: #fff; }
+
+/* ─── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--yellow); }
+
+/* ─── Marquee ──────────────────────────────────────────────── */
+@keyframes marquee-fwd {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-rev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-fwd {
+  animation: marquee-fwd 22s linear infinite;
+  width: max-content;
+  display: flex;
+}
+.marquee-rev {
+  animation: marquee-rev 28s linear infinite;
+  width: max-content;
+  display: flex;
+}
+.marquee-fwd:hover,
+.marquee-rev:hover { animation-play-state: paused; }
+
+/* ─── Scroll indicator ─────────────────────────────────────── */
+@keyframes scroll-drop {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: translateY(350%); opacity: 0; }
+}
+.scroll-drop { animation: scroll-drop 2.2s ease-in-out infinite; }
+
+/* ─── Nivel tab active ─────────────────────────────────────── */
+.nivel-tab-active {
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  border-color: var(--yellow) !important;
+}

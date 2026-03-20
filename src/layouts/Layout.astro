@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Overlap Guatemala — Blindaje Automotriz Premium',
+  description = 'Tecnología balística certificada. Discreción absoluta. Sin comprometer el lujo de tu vehículo.'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/assets/logo-white.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      /* ── Scroll reveal ── */
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    </script>
+  </body>
+</html>

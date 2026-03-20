@@ -1,0 +1,59 @@
+---
+const marcas = ['Toyota','Lexus','Mercedes-Benz','BMW','Land Rover','Chevrolet','Ford','Nissan'];
+const row1 = [...marcas, ...marcas];
+const row2 = [...[...marcas].reverse(), ...[...marcas].reverse()];
+---
+
+<section class="section-pad overflow-hidden" style="background:var(--gray1)">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <p class="eyebrow mb-4">Compatibilidad</p>
+      <h2 class="display" style="font-size:clamp(44px,6vw,80px);color:#fff;margin-bottom:1.25rem">
+        Compatible con las<br />marcas que eliges
+      </h2>
+      <p style="color:rgba(255,255,255,.4);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.7" class="compat-subtitle">
+        Blindamos cualquier vehículo de lujo sin alterar su garantía de fábrica ni su estética original.
+      </p>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="relative overflow-hidden reveal" style="transition-delay:.15s">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(to right,var(--gray1),transparent);z-index:10;pointer-events:none"></div>
+      <div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,var(--gray1),transparent);z-index:10;pointer-events:none"></div>
+      <div class="marquee-fwd" style="gap:3rem;align-items:center;padding:1rem 0">
+        {row1.map(m => (
+          <div class="marca-pill" style="flex-shrink:0;padding:.75rem 2rem;border:1px solid rgba(255,255,255,.08);transition:border-color .25s ease,color .25s ease">
+            <span class="display" style="font-size:1.3rem;color:rgba(255,255,255,.3);letter-spacing:.06em;white-space:nowrap;transition:color .25s ease">{m}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="relative overflow-hidden reveal" style="margin-top:1rem;transition-delay:.25s">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(to right,var(--gray1),transparent);z-index:10;pointer-events:none"></div>
+      <div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(to left,var(--gray1),transparent);z-index:10;pointer-events:none"></div>
+      <div class="marquee-rev" style="gap:3rem;align-items:center;padding:1rem 0">
+        {row2.map(m => (
+          <div class="marca-pill" style="flex-shrink:0;padding:.75rem 2rem;border:1px solid rgba(255,255,255,.05);transition:border-color .25s ease">
+            <span class="display" style="font-size:1.3rem;color:rgba(255,255,255,.18);letter-spacing:.06em;white-space:nowrap;transition:color .25s ease">{m}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="text-center reveal" style="color:rgba(255,255,255,.22);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;margin-top:3rem;transition-delay:.35s">
+      Y muchas más marcas — consulta disponibilidad
+    </p>
+  </div>
+</section>
+
+<style>
+  .marca-pill:hover { border-color: rgba(245,200,0,.35) !important; }
+  .marca-pill:hover span { color: var(--yellow) !important; }
+
+  @media (max-width: 640px) {
+    .compat-subtitle { font-size: 1rem !important; line-height: 1.8 !important; }
+  }
+</style>

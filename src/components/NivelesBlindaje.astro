@@ -1,0 +1,298 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const niveles = [
+  {
+    id: 'II',
+    nombre: 'Protección Básica',
+    descripcion: 'Ideal para quienes valoran la protección cotidiana sin modificar el diseño ni el rendimiento de su vehículo. Una primera línea de defensa confiable y discreta.',
+    calibres: ['9mm Parabellum'],
+    imagen: '/assets/Niveles_Nivel II.png',
+    badge: null,
+  },
+  {
+    id: 'III',
+    nombre: 'Protección Urbana',
+    descripcion: 'Diseñado para quienes se mueven en entornos urbanos y necesitan protección sin comprometer el lujo ni la estética de su vehículo. El equilibrio perfecto entre seguridad y sofisticación.',
+    calibres: ['.44 Magnum', '9mm Parabellum', '.40 S&W', '.45 ACP'],
+    imagen: '/assets/Niveles_Nivel III.png',
+    badge: 'Más Vendido',
+  },
+  {
+    id: 'IV',
+    nombre: 'Protección Reforzada',
+    descripcion: 'Una solución robusta y discreta para quienes requieren una defensa superior ante riesgos estratégicos, sin renunciar a la exclusividad de su vehículo.',
+    calibres: ['7.62x39mm', '.223 Remington', '5.56 NATO'],
+    imagen: '/assets/Niveles_Nivel IV.png',
+    badge: null,
+  },
+  {
+    id: 'V',
+    nombre: 'Protección Máxima',
+    descripcion: 'Cuando la seguridad no es una opción, sino una necesidad. El más alto nivel de protección disponible sin comprometer el lujo y la sofisticación de tu vehículo.',
+    calibres: ['7.62x51mm FMJ', 'Rifle de alta potencia'],
+    imagen: '/assets/Niveles_Nivel V.png',
+    badge: null,
+  },
+];
+---
+
+<section id="blindajes" class="noise-bg relative overflow-hidden" style="background:var(--black)">
+
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 pointer-events-none z-0"
+    style="background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px">
+  </div>
+
+  <div class="relative z-[2] max-w-[1400px] mx-auto px-8 py-[7rem] niveles-inner">
+
+    <!-- Header -->
+    <div class="reveal flex items-end justify-between gap-8 flex-wrap mb-14">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-7 h-px" style="background:var(--yellow)"></div>
+          <span class="text-[.7rem] font-semibold tracking-[.3em] uppercase" style="font-family:var(--font-body);color:var(--yellow)">Nivel de Blindaje</span>
+        </div>
+        <h2 class="text-white leading-[.95]" style="font-family:var(--font-display);font-size:clamp(40px,5.5vw,72px)">
+          Elige tu <span style="color:var(--yellow)">protección</span>
+        </h2>
+      </div>
+      <p class="niveles-subtitle text-[1.05rem] leading-[1.7] max-w-[320px]" style="color:rgba(255,255,255,.38);font-family:var(--font-body)">
+        Cuatro niveles de protección balística certificada. Cada uno diseñado para un perfil de riesgo específico.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div id="nivel-tabs" class="reveal grid grid-cols-4 gap-2" style="transition-delay:.1s">
+      {niveles.map((n, i) => (
+        <button
+          data-tab={n.id}
+          class={`nivel-tab relative py-[.85rem] px-4 text-[.78rem] font-bold tracking-[.18em] uppercase border transition-all duration-200 cursor-pointer${i === 0 ? ' is-active' : ''}`}
+          style="font-family:var(--font-body)"
+        >
+          {n.badge && (
+            <span class="absolute -top-[11px] left-1/2 -translate-x-1/2 text-[.55rem] font-bold tracking-[.14em] uppercase px-[.55rem] py-[.2rem] whitespace-nowrap z-[5]"
+              style="background:var(--yellow);color:var(--black)">
+              {n.badge}
+            </span>
+          )}
+          Nivel {n.id}
+        </button>
+      ))}
+    </div>
+
+    <!-- Panels -->
+    <div id="nivel-panels" class="relative">
+      {niveles.map((n, i) => (
+        <div
+          data-panel={n.id}
+          class={`nivel-panel border border-white/[.08] border-t-0${i === 0 ? ' is-active' : ''}`}
+        >
+          <!-- Vehicle -->
+          <div class="panel-vehicle relative flex items-center justify-center overflow-hidden" style="background:rgba(245,200,0,.03)">
+            <!-- Bottom glow -->
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-[200px] rounded-full pointer-events-none"
+              style="background:rgba(245,200,0,.12);filter:blur(70px)"></div>
+            <!-- Side glow -->
+            <div class="absolute -right-[50px] top-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none"
+              style="background:rgba(245,200,0,.05);filter:blur(80px)"></div>
+            <!-- Watermark -->
+            <span class="level-watermark absolute bottom-[-1rem] right-6 leading-none select-none pointer-events-none"
+              style="font-family:var(--font-display);font-size:160px;color:rgba(255,255,255,.025)">{n.id}</span>
+
+            <img
+              src={n.imagen}
+              alt={`Vehículo blindado Nivel ${n.id}`}
+              class="vehicle-img relative z-[2] w-full object-contain transition-transform duration-[600ms] ease-in-out"
+              style="filter:drop-shadow(0 24px 80px rgba(245,200,0,.18))"
+            />
+          </div>
+
+          <!-- Info -->
+          <div class="panel-info flex flex-col justify-between" style="border-right:1px solid rgba(255,255,255,.07)">
+            <div>
+              <!-- Level badge -->
+              <div class="flex items-center gap-4 mb-8">
+                <span class="leading-none" style="font-family:var(--font-display);font-size:5rem;color:var(--yellow)">{n.id}</span>
+                <div class="w-px h-12" style="background:rgba(255,255,255,.1)"></div>
+                <div>
+                  <p class="text-[.65rem] font-semibold tracking-[.25em] uppercase mb-1" style="font-family:var(--font-body);color:rgba(255,255,255,.3)">Nivel</p>
+                  <h3 class="text-white leading-[1.1]" style="font-family:var(--font-display);font-size:clamp(20px,2.2vw,28px)">{n.nombre}</h3>
+                </div>
+              </div>
+
+              <p class="text-[1.1rem] leading-[1.8] mb-8" style="color:rgba(255,255,255,.5)">{n.descripcion}</p>
+
+              <!-- Calibres -->
+              <div class="mb-10">
+                <p class="text-[.62rem] font-semibold tracking-[.25em] uppercase mb-4" style="font-family:var(--font-body);color:rgba(255,255,255,.25)">Calibres que resiste</p>
+                <ul class="flex flex-col gap-[.65rem]">
+                  {n.calibres.map(c => (
+                    <li class="flex items-center gap-3 text-[1.05rem] font-medium" style="color:rgba(255,255,255,.75)">
+                      <Icon name="tabler:target" style="width:15px;height:15px;color:var(--yellow);flex-shrink:0" />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <a href="#contacto" class="btn-primary self-start">
+              Cotizar Nivel {n.id}
+              <Icon name="tabler:arrow-right" style="width:15px;height:15px" />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Tab active/inactive state ── */
+  .nivel-tab {
+    background: transparent;
+    color: rgba(255,255,255,.4);
+    border-color: rgba(255,255,255,.15);
+  }
+  .nivel-tab.is-active {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  /* ── Vehicle hover ── */
+  .vehicle-img:hover { transform: scale(1.03) translateY(-6px); }
+
+  /* ── Panel layout: desktop (side by side) ── */
+  .nivel-panel {
+    display: none;
+    grid-template-columns: 1fr 1.4fr;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .nivel-panel.is-active {
+    display: grid;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .panel-vehicle {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 500px;
+    padding: 2rem;
+  }
+  .panel-info {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 3rem;
+  }
+
+  /* ── Tablet (≤900px): stack vertically ── */
+  @media (max-width: 900px) {
+    .nivel-panel { grid-template-columns: 1fr; }
+    .panel-vehicle {
+      grid-column: 1; grid-row: 1;
+      min-height: 300px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .panel-info {
+      grid-column: 1; grid-row: 2;
+      border-right: none !important;
+    }
+  }
+
+  /* ── Mobile (≤640px) ── */
+  @media (max-width: 640px) {
+    .niveles-inner { padding: 2.5rem 1rem 3.5rem !important; }
+
+    /* Header */
+    .niveles-inner > .reveal:first-child {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: .5rem !important;
+      margin-bottom: 1.5rem !important;
+    }
+    .niveles-subtitle { font-size: .95rem !important; max-width: 100% !important; }
+
+    /* Tabs: 2×2 */
+    #nivel-tabs {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: .35rem !important;
+    }
+    .nivel-tab { padding: .9rem .5rem !important; font-size: .7rem !important; letter-spacing: .08em !important; }
+
+    /* Panels: flex column, vehicle on top */
+    .nivel-panel.is-active {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    /* Vehicle: large proportional area */
+    .panel-vehicle {
+      order: 0;
+      grid-column: unset !important;
+      grid-row: unset !important;
+      width: 100%;
+      /* tall enough to show the car large */
+      height: 75vw !important;
+      min-height: 300px !important;
+      max-height: 500px !important;
+      padding: .5rem !important;
+      border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    }
+    .vehicle-img {
+      width: 115% !important;
+      height: 115% !important;
+      max-width: 115% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      filter: drop-shadow(0 16px 48px rgba(245,200,0,.35)) !important;
+    }
+    /* Hide side glow & watermark — keep bottom glow */
+    .panel-vehicle > div:nth-child(2),
+    .level-watermark { display: none !important; }
+
+    /* Info block */
+    .panel-info {
+      order: 1;
+      grid-column: unset !important;
+      grid-row: unset !important;
+      padding: 1.5rem 1.25rem 2rem !important;
+      border-right: none !important;
+      justify-content: flex-start !important;
+    }
+    .panel-info > div:first-child { margin-bottom: 0 !important; }
+    .panel-info .flex.items-center.gap-4 { margin-bottom: 1rem !important; }
+    .panel-info .text-\[5rem\] { font-size: 3.5rem !important; }
+    .panel-info h3 { font-size: 1.15rem !important; }
+    .panel-info .text-\[1\.1rem\] { font-size: .97rem !important; line-height: 1.75 !important; margin-bottom: 1.25rem !important; }
+    .panel-info .mb-10 { margin-bottom: 1.25rem !important; }
+
+    /* CTA full width */
+    .panel-info .btn-primary {
+      align-self: stretch !important;
+      justify-content: center !important;
+      margin-top: 1rem !important;
+    }
+  }
+</style>
+
+<script>
+  const tabs   = document.querySelectorAll<HTMLButtonElement>('.nivel-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.nivel-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      panels.forEach(panel => {
+        panel.classList.toggle('is-active', panel.dataset.panel === target);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,156 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const navLinks = [
+  { label: 'Inicio',             href: '#inicio' },
+  { label: 'Niveles de Blindaje',href: '#blindajes' },
+  { label: 'Nosotros',           href: '#nosotros' },
+  { label: 'Cotizar',            href: '#contacto' },
+];
+---
+
+<footer style="background:var(--black);border-top:2px solid var(--yellow)">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-14 py-16">
+
+    <div class="grid md:grid-cols-3 gap-12 items-start mb-14">
+
+      <!-- Brand -->
+      <div>
+        <img src="/assets/logo-white.png" alt="Overlap Guatemala" style="height:36px;width:auto;object-fit:contain;margin-bottom:1.25rem" />
+        <p style="color:rgba(255,255,255,.32);font-size:1.05rem;line-height:1.75;max-width:260px;font-style:italic" class="footer-quote">
+          "En Overlap no buscamos hacer más blindajes. Sino hacerlos mejor."
+        </p>
+      </div>
+
+      <!-- Nav -->
+      <div class="md:text-center">
+        <p class="eyebrow" style="margin-bottom:1.25rem">Navegación</p>
+        <ul style="display:flex;flex-direction:column;gap:.85rem">
+          {navLinks.map(l => (
+            <li>
+              <a href={l.href}
+                 style="color:rgba(255,255,255,.38);font-size:1.05rem;letter-spacing:.04em;text-decoration:none;transition:color .2s ease"
+                 class="footer-nav-link"
+                 onmouseover="this.style.color='#fff'"
+                 onmouseout="this.style.color='rgba(255,255,255,.38)'">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact + Social -->
+      <div class="md:text-right footer-contact">
+        <p class="eyebrow" style="margin-bottom:1.25rem">Contacto</p>
+        <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:2rem">
+          <a href="tel:+50242453899"
+             style="color:rgba(255,255,255,.38);font-size:1.05rem;text-decoration:none;display:flex;align-items:center;gap:.5rem;justify-content:flex-end;transition:color .2s ease"
+             class="footer-contact-link"
+             onmouseover="this.style.color='var(--yellow)'"
+             onmouseout="this.style.color='rgba(255,255,255,.38)'">
+            <Icon name="tabler:phone" style="width:15px;height:15px" />
+            +502 4245 3899
+          </a>
+          <a href="mailto:info@overlapgt.com"
+             style="color:rgba(255,255,255,.38);font-size:.95rem;text-decoration:none;display:flex;align-items:center;gap:.5rem;justify-content:flex-end;transition:color .2s ease"
+             onmouseover="this.style.color='var(--yellow)'"
+             onmouseout="this.style.color='rgba(255,255,255,.38)'">
+            <Icon name="tabler:mail" style="width:15px;height:15px" />
+            info@overlapgt.com
+          </a>
+          <p style="color:rgba(255,255,255,.22);font-size:1.05rem;display:flex;align-items:center;gap:.5rem;justify-content:flex-end">
+            <Icon name="tabler:map-pin" style="width:15px;height:15px" />
+            Guatemala City, Guatemala
+          </p>
+        </div>
+
+        <div style="display:flex;gap:.6rem;justify-content:flex-end" class="footer-social">
+          {[
+            { href:'#',                                                                    icon:'mdi:facebook',  label:'Facebook'  },
+            { href:'#',                                                                    icon:'mdi:instagram', label:'Instagram' },
+            { href:'https://wa.me/50242453899?text=Hola,%20me%20interesa%20cotizar',       icon:'mdi:whatsapp',  label:'WhatsApp'  },
+          ].map(s => (
+            <a href={s.href}
+               aria-label={s.label}
+               class="social-btn"
+               style="width:38px;height:38px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.38);text-decoration:none;transition:border-color .2s ease,color .2s ease">
+              <Icon name={s.icon} style="width:16px;height:16px" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem" class="footer-bottom">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1rem">
+        <p style="color:rgba(255,255,255,.2);font-size:.78rem;letter-spacing:.06em">
+          © 2026 Overlap Guatemala. Todos los derechos reservados.
+        </p>
+        <span style="color:rgba(255,255,255,.1);font-size:.78rem">·</span>
+        <p style="color:rgba(255,255,255,.2);font-size:.78rem">
+          Created by <a href="https://lynqstudio.agency" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s ease" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Lynq Studio</a>
+        </p>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.15);font-size:.78rem">
+        <Icon name="tabler:shield-check" style="width:14px;height:14px;color:rgba(245,200,0,.4)" />
+        Certificado NIJ & CEN
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB — left -->
+<a href="https://wa.me/50242453899?text=Hola,%20me%20interesa%20cotizar%20un%20blindaje"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Contactar por WhatsApp"
+   style="position:fixed;bottom:1.5rem;left:1.5rem;z-index:50;width:56px;height:56px;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(37,211,102,.35);transition:transform .2s ease"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'">
+  <Icon name="mdi:whatsapp" style="width:28px;height:28px;color:#fff" />
+</a>
+
+<!-- Back to top — right -->
+<button id="back-to-top"
+        aria-label="Volver arriba"
+        style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;width:56px;height:56px;background:var(--yellow);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(245,200,0,.3);cursor:pointer;transition:transform .2s ease, opacity .3s ease, visibility .3s ease;opacity:0;visibility:hidden"
+        onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'">
+  <Icon name="tabler:arrow-up" style="width:24px;height:24px;color:var(--black)" />
+</button>
+
+<script>
+  const btn = document.getElementById('back-to-top')!;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn.style.opacity = '1';
+      btn.style.visibility = 'visible';
+    } else {
+      btn.style.opacity = '0';
+      btn.style.visibility = 'hidden';
+    }
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+<style>
+  .social-btn:hover { border-color: var(--yellow) !important; color: var(--yellow) !important; }
+
+  @media (max-width: 767px) {
+    /* Contact column: left-align on mobile */
+    .footer-contact { text-align: left !important; }
+    .footer-contact a,
+    .footer-contact p { justify-content: flex-start !important; }
+    .footer-social { justify-content: flex-start !important; }
+
+    /* Bottom bar: stack */
+    .footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: .75rem !important; }
+  }
+
+  @media (max-width: 640px) {
+    .footer-quote { font-size: 1rem !important; line-height: 1.8 !important; }
+    .footer-nav-link { font-size: 1rem !important; }
+    .footer-contact-link { font-size: 1rem !important; }
+  }
+</style>

@@ -1,0 +1,213 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const conditions = [
+  { icon: 'tabler:credit-card', label: '70% anticipo',       sub: 'al iniciar el proceso' },
+  { icon: 'tabler:shield',      label: '3 años de garantía', sub: 'por escrito' },
+  { icon: 'tabler:clock',       label: '6 semanas',          sub: 'tiempo de entrega' },
+  { icon: 'tabler:lock',        label: 'Confidencial',       sub: 'total discreción' },
+];
+---
+
+<section id="contacto" class="noise-bg" style="
+  position: relative;
+  background: var(--black);
+  overflow: hidden;
+  padding: 7rem 2rem;
+">
+  <!-- Ambient glow -->
+  <div style="position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(245,200,0,.06) 0%,transparent 65%);pointer-events:none;z-index:0"></div>
+  <div style="position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(245,200,0,.04) 0%,transparent 65%);pointer-events:none;z-index:0"></div>
+
+  <div style="position:relative;z-index:2;max-width:900px;margin:0 auto">
+
+    <!-- ── Header ── -->
+    <div class="reveal" style="text-align:center;margin-bottom:3.5rem">
+      <div style="display:inline-flex;align-items:center;gap:.75rem;margin-bottom:1.25rem">
+        <div style="width:24px;height:1px;background:var(--yellow)"></div>
+        <span style="font-family:var(--font-body);font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--yellow)">¿Listo para protegerte?</span>
+        <div style="width:24px;height:1px;background:var(--yellow)"></div>
+      </div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(40px,6vw,72px);color:#fff;line-height:.95;margin-bottom:1.25rem">
+        Tu cotización en<br /><span style="color:var(--yellow)">menos de 24 horas</span>
+      </h2>
+      <p style="color:rgba(255,255,255,.45);font-size:1.1rem;line-height:1.7;max-width:480px;margin:0 auto" class="cotizar-subtitle">
+        Cuéntanos qué vehículo tienes y qué nivel de protección necesitas. Sin compromisos. Con total discreción.
+      </p>
+    </div>
+
+    <!-- ── Form card ── -->
+    <div class="reveal" style="
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 2.5rem;
+      transition-delay: .1s;
+    ">
+      <form id="cotizar-form" style="display:flex;flex-direction:column;gap:1.1rem" novalidate>
+
+        <!-- Row 1: name + phone -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem" class="form-row-2">
+          <div>
+            <label class="form-label">Nombre completo</label>
+            <input type="text" name="nombre" placeholder="Tu nombre completo" class="form-field" required />
+          </div>
+          <div>
+            <label class="form-label">Teléfono / WhatsApp</label>
+            <input type="tel" name="telefono" placeholder="+502 0000 0000" class="form-field" required />
+          </div>
+        </div>
+
+        <!-- Row 2: email + vehicle -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem" class="form-row-2">
+          <div>
+            <label class="form-label">Email</label>
+            <input type="email" name="email" placeholder="tu@email.com" class="form-field" required />
+          </div>
+          <div>
+            <label class="form-label">Vehículo (marca y modelo)</label>
+            <input type="text" name="vehiculo" placeholder="Ej: Toyota Land Cruiser 2023" class="form-field" required />
+          </div>
+        </div>
+
+        <!-- Row 3: level + message -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem" class="form-row-2">
+          <div>
+            <label class="form-label">Nivel de blindaje</label>
+            <select name="nivel" class="form-field form-select" required>
+              <option value="" disabled selected>Selecciona un nivel</option>
+              <option value="II">Nivel II — Protección Básica</option>
+              <option value="III">Nivel III — Protección Urbana</option>
+              <option value="IV">Nivel IV — Protección Reforzada</option>
+              <option value="V">Nivel V — Protección Máxima</option>
+              <option value="no-seguro">No estoy seguro</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Mensaje (opcional)</label>
+            <textarea name="mensaje" rows="1" placeholder="Cuéntanos más..." class="form-field" style="resize:none;height:52px"></textarea>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem">
+          <p style="color:rgba(255,255,255,.28);font-size:.78rem;display:flex;align-items:center;gap:.45rem">
+            <Icon name="tabler:lock" style="width:13px;height:13px;color:var(--yellow);flex-shrink:0" />
+            Tu información es completamente confidencial.
+          </p>
+          <button type="submit" class="btn-primary" style="font-size:.78rem;padding:.9rem 2.5rem;white-space:nowrap">
+            Solicitar Cotización
+            <Icon name="tabler:arrow-right" style="width:15px;height:15px" />
+          </button>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div id="form-success" style="display:none;text-align:center;padding:3rem 0">
+        <div style="width:60px;height:60px;border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem">
+          <Icon name="tabler:check" style="width:28px;height:28px;color:var(--yellow)" />
+        </div>
+        <h3 style="font-family:var(--font-display);font-size:2rem;color:#fff;margin-bottom:.6rem">¡Solicitud enviada!</h3>
+        <p style="color:rgba(255,255,255,.45);font-size:1.05rem">Te contactaremos en menos de 24 horas.</p>
+      </div>
+    </div>
+
+    <!-- ── Contact + conditions strip ── -->
+    <div class="reveal" style="
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,.07);
+      transition-delay: .2s;
+    " id="info-strip">
+
+      <!-- Phone -->
+      <a href="tel:+50242453899" class="strip-cell" style="
+        display:flex;align-items:center;gap:.85rem;
+        padding:1.25rem 1.75rem;
+        border-right:1px solid rgba(255,255,255,.07);
+        text-decoration:none;
+        transition:background .2s ease;
+      ">
+        <Icon name="tabler:phone" style="width:18px;height:18px;color:var(--yellow);flex-shrink:0" />
+        <div>
+          <p style="color:rgba(255,255,255,.28);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.2rem">Teléfono</p>
+          <p style="color:#fff;font-size:1.05rem;font-weight:500;white-space:nowrap">+502 4245 3899</p>
+        </div>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:info@overlapgt.com" class="strip-cell" style="
+        display:flex;align-items:center;gap:.85rem;
+        padding:1.25rem 1.75rem;
+        border-right:1px solid rgba(255,255,255,.07);
+        text-decoration:none;
+        transition:background .2s ease;
+      ">
+        <Icon name="tabler:mail" style="width:18px;height:18px;color:var(--yellow);flex-shrink:0" />
+        <div>
+          <p style="color:rgba(255,255,255,.28);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.2rem">Email</p>
+          <p style="color:#fff;font-size:1.05rem;font-weight:500;white-space:nowrap">info@overlapgt.com</p>
+        </div>
+      </a>
+
+      <!-- Conditions pills -->
+      <div style="display:flex;align-items:center;gap:0;overflow:hidden">
+        {conditions.map((c, i) => (
+          <div style={`
+            display:flex;align-items:center;gap:.6rem;
+            padding:1.25rem 1.25rem;
+            flex:1;
+            ${i < conditions.length - 1 ? 'border-right:1px solid rgba(255,255,255,.07);' : ''}
+          `}>
+            <Icon name={c.icon} style="width:15px;height:15px;color:var(--yellow);flex-shrink:0" />
+            <div>
+              <p style="color:#fff;font-size:.8rem;font-weight:600;white-space:nowrap">{c.label}</p>
+              <p style="color:rgba(255,255,255,.3);font-size:.65rem;white-space:nowrap">{c.sub}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .strip-cell:hover { background: rgba(255,255,255,.03) !important; }
+
+  @media (max-width: 640px) {
+    .cotizar-subtitle { font-size: 1.05rem !important; line-height: 1.8 !important; }
+  }
+
+  @media (max-width: 768px) {
+    .form-row-2 { grid-template-columns: 1fr !important; }
+    #info-strip { grid-template-columns: 1fr !important; }
+    #info-strip > * { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.07); }
+    #info-strip > *:last-child { border-bottom: none !important; }
+    /* Conditions: 2-col grid on mobile */
+    #info-strip > div:last-child { display: grid !important; grid-template-columns: 1fr 1fr !important; flex-direction: unset !important; align-items: unset !important; }
+    #info-strip > div:last-child > div { border-right: none !important; padding: 1rem !important; }
+    #info-strip > div:last-child > div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.07) !important; }
+    #info-strip > div:last-child > div:nth-child(1),
+    #info-strip > div:last-child > div:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.07) !important; }
+  }
+</style>
+
+<script>
+  const form    = document.getElementById('cotizar-form') as HTMLFormElement;
+  const success = document.getElementById('form-success') as HTMLElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.style.opacity = '0';
+    form.style.transition = 'opacity .3s ease';
+    setTimeout(() => {
+      form.style.display = 'none';
+      success.style.display = 'block';
+      success.style.opacity = '0';
+      success.style.transition = 'opacity .5s ease';
+      requestAnimationFrame(() => { success.style.opacity = '1'; });
+    }, 300);
+  });
+</script>

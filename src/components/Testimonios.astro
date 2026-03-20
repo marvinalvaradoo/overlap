@@ -1,0 +1,90 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const testimonios = [
+  {
+    iniciales: 'CR',
+    texto: 'Elegí Overlap porque necesitaba una solución seria y confiable. Desde el primer contacto fueron claros, profesionales y muy detallistas. El blindaje quedó impecable y la sensación de seguridad es total.',
+    cargo: 'Cliente Nivel III',
+  },
+  {
+    iniciales: 'MA',
+    texto: 'Me explicaron todo el proceso con mucha transparencia y cumplieron exactamente con los tiempos acordados. Hoy manejo con mucha más tranquilidad gracias a Overlap.',
+    cargo: 'Cliente Nivel IV',
+  },
+  {
+    iniciales: 'JL',
+    texto: 'Comparé varias opciones antes de decidirme y Overlap fue la que más confianza me transmitió. Excelente atención, materiales de alta calidad y un resultado que supera mis expectativas.',
+    cargo: 'Cliente Nivel III',
+  },
+];
+
+const trust = [
+  { icon: 'tabler:shield-check', label: 'Garantía por escrito' },
+  { icon: 'tabler:lock',         label: 'Proceso confidencial' },
+  { icon: 'tabler:certificate',  label: 'Materiales certificados' },
+  { icon: 'tabler:clock',        label: 'Entrega en 6 semanas' },
+];
+---
+
+<section class="section-pad overflow-hidden" style="background:#fff">
+  <div class="max-w-[1400px] mx-auto">
+
+    <div class="mb-16 reveal">
+      <p class="eyebrow mb-4">Testimonios</p>
+      <h2 class="display" style="font-size:clamp(44px,6vw,80px);color:var(--black)">
+        Confianza que<br />se puede comprobar
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {testimonios.map((t, i) => (
+        <div class="test-card reveal"
+             style={`background:#F7F7F7;border:1px solid rgba(10,10,10,.06);padding:2.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:border-color .3s ease,box-shadow .3s ease;transition-delay:${i*.1}s`}>
+
+          <!-- Stars -->
+          <div style="display:flex;gap:.3rem">
+            {Array(5).fill(0).map(() => (
+              <Icon name="tabler:star-filled" style="width:16px;height:16px;color:var(--yellow)" />
+            ))}
+          </div>
+
+          <blockquote style="color:rgba(10,10,10,.62);font-size:1.1rem;line-height:1.8;font-style:italic;flex:1">
+            "{t.texto}"
+          </blockquote>
+
+          <div style="display:flex;align-items:center;gap:1rem;padding-top:1.25rem;border-top:1px solid rgba(10,10,10,.07)">
+            <div style="width:42px;height:42px;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span class="display" style="font-size:.9rem;color:#fff;letter-spacing:.08em">{t.iniciales}</span>
+            </div>
+            <div>
+              <p style="color:rgba(10,10,10,.32);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase">{t.cargo}</p>
+              <p style="color:rgba(10,10,10,.38);font-size:.78rem;margin-top:.2rem">Guatemala</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Trust bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal" style="margin-top:4rem;transition-delay:.3s">
+      {trust.map(item => (
+        <div style="display:flex;align-items:center;gap:.75rem;color:rgba(10,10,10,.5)">
+          <Icon name={item.icon} style="width:20px;height:20px;flex-shrink:0;color:var(--yellow)" />
+          <span style="font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600">{item.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .test-card:hover {
+    border-color: rgba(245,200,0,.35) !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,.06) !important;
+  }
+
+  @media (max-width: 640px) {
+    .test-card blockquote { font-size: 1.05rem !important; line-height: 1.85 !important; }
+  }
+</style>
