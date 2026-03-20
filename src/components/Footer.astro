@@ -65,7 +65,7 @@ const navLinks = [
           </p>
         </div>
 
-        <div style="display:flex;gap:.6rem;justify-content:flex-end" class="footer-social">
+        <div style="display:flex;gap:.75rem;justify-content:flex-end" class="footer-social">
           {[
             { href:'#',                                                                    icon:'mdi:facebook',  label:'Facebook'  },
             { href:'#',                                                                    icon:'mdi:instagram', label:'Instagram' },
@@ -74,8 +74,8 @@ const navLinks = [
             <a href={s.href}
                aria-label={s.label}
                class="social-btn"
-               style="width:38px;height:38px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.38);text-decoration:none;transition:border-color .2s ease,color .2s ease">
-              <Icon name={s.icon} style="width:16px;height:16px" />
+               style="width:48px;height:48px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;transition:border-color .2s ease,color .2s ease,background .2s ease">
+              <Icon name={s.icon} style="width:22px;height:22px" />
             </a>
           ))}
         </div>
@@ -138,13 +138,10 @@ const navLinks = [
   .social-btn:hover { border-color: var(--yellow) !important; color: var(--yellow) !important; }
 
   @media (max-width: 767px) {
-    /* Contact column: left-align on mobile */
     .footer-contact { text-align: left !important; }
     .footer-contact a,
     .footer-contact p { justify-content: flex-start !important; }
     .footer-social { justify-content: flex-start !important; }
-
-    /* Bottom bar: stack */
     .footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: .75rem !important; }
   }
 
@@ -152,5 +149,24 @@ const navLinks = [
     .footer-quote { font-size: 1rem !important; line-height: 1.8 !important; }
     .footer-nav-link { font-size: 1rem !important; }
     .footer-contact-link { font-size: 1rem !important; }
+
+    /* Social icons: bigger, centered, evenly spaced on mobile */
+    .footer-social {
+      width: 100% !important;
+      gap: .75rem !important;
+    }
+    .footer-social .social-btn {
+      flex: 1 !important;
+      height: 56px !important;
+      border-color: rgba(255,255,255,.18) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .footer-social .social-btn svg {
+      width: 26px !important;
+      height: 26px !important;
+      flex-shrink: 0 !important;
+    }
   }
 </style>

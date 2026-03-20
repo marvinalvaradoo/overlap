@@ -27,15 +27,15 @@ const features = [
         </p>
 
         <!-- Stats -->
-        <div class="grid grid-cols-3 gap-5 reveal mb-12" style="transition-delay:.3s">
+        <div class="stats-grid grid grid-cols-3 gap-5 reveal mb-12" style="transition-delay:.3s">
           {[
             { val:'3 años',   label:'Garantía por escrito',          accent:false },
             { val:'NIJ & CEN',label:'Certificaciones internacionales', accent:true  },
             { val:'II — V',   label:'Cobertura completa',             accent:false },
           ].map(s => (
-            <div style={`border-top: 2px solid ${s.accent ? 'var(--yellow)' : 'rgba(10,10,10,.12)'}; padding-top:1.2rem`}>
-              <p class="display" style="font-size:1.9rem; color:var(--black); margin-bottom:.3rem">{s.val}</p>
-              <p style="color:rgba(10,10,10,.38); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; line-height:1.4">{s.label}</p>
+            <div style={`border-top: 2px solid ${s.accent ? 'var(--yellow)' : 'rgba(10,10,10,.12)'}; padding-top:1.2rem; min-width:0`}>
+              <p class="display" style="font-size:clamp(1.2rem,2.5vw,1.9rem); color:var(--black); margin-bottom:.3rem; white-space:nowrap">{s.val}</p>
+              <p style="color:rgba(10,10,10,.38); font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; line-height:1.5; word-break:break-word">{s.label}</p>
             </div>
           ))}
         </div>
@@ -73,13 +73,19 @@ const features = [
 
 <style>
   @media (max-width: 767px) {
-    /* Reduce image aspect ratio on mobile so it doesn't dominate */
     .porque-img-wrap { aspect-ratio: 3/2 !important; }
-    /* Stats: 3 cols still fine but smaller text handled by clamp */
   }
 
   @media (max-width: 640px) {
     .porque-body-text { font-size: 1.05rem !important; line-height: 1.85 !important; }
     .porque-feature-item { font-size: 1rem !important; }
+    /* Stack stats vertically on small screens to prevent overlap */
+    .stats-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.25rem !important;
+    }
+    /* Bigger stat values and labels on mobile */
+    .stats-grid .display { font-size: 2rem !important; }
+    .stats-grid p:last-child { font-size: .82rem !important; letter-spacing: .12em !important; }
   }
 </style>
