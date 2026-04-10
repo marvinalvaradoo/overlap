@@ -2,9 +2,11 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  integrations: [icon()],
+  site: 'https://www.overlapgt.com',
+  integrations: [icon(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
     build: {
